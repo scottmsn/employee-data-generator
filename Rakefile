@@ -8,7 +8,9 @@ namespace :generator do
   task :csv do
     require './lib/generator'
 
-    generator = Generator.new
+    number_of_users = ENV['NUMBER_OF_USERS']
+
+    generator = Generator.new(number_of_users)
 
     File.open('tmp/new.csv', 'wb') { |file| file.write(generator.to_csv) }
   end

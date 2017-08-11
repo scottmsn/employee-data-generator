@@ -1,12 +1,14 @@
 class Generator
-  def initialize
+  def initialize(number_of_users)
+    @number_of_users = number_of_users
   end
 
   def to_csv
     require 'csv'
     CSV.generate do |csv|
-      csv << ['first', 'row', 'of', 'data']
-      csv << ['second', 'row', 'of', 'data']
+      @number_of_users.to_i.times do
+        csv << ['row', 'of', 'data']
+      end
     end
   end
 end

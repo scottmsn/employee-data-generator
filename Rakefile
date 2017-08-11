@@ -6,12 +6,10 @@ end
 namespace :generator do
   desc 'generate a csv file'
   task :csv do
-    require 'csv'
-    csv_string = CSV.generate do |csv|
-      csv << ['first', 'row', 'of', 'data']
-      csv << ['second', 'row', 'of', 'data']
-    end
+    require './lib/generator'
 
-    File.open('tmp/new.csv', 'wb') { |file| file.write(csv_string) }
+    generator = Generator.new
+
+    File.open('tmp/new.csv', 'wb') { |file| file.write(generator.to_csv) }
   end
 end

@@ -15,3 +15,7 @@ namespace :generator do
     File.open('tmp/new.csv', 'wb') { |file| file.write(generator.to_csv) }
   end
 end
+
+namespace :haha do
+  puts 'wow!!'
+end

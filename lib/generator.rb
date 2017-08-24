@@ -31,14 +31,18 @@ class Generator
 
   def generate_dates
     # a random date of birth
-    dob = Time.at(@min_dob + rand * (@max_dob.to_f - @min_dob.to_f))
+    dob = time_rand(@min_dob, @max_dob)
 
     # random start date after date of birth
-    sd = Time.at(dob + rand * (@max_sd.to_f - dob.to_f))
+    sd = time_rand(dob, @max_sd)
 
     # random end date or nil
-    ed = (rand(100) > 95) ? Time.at(@now + rand * (@max_ed.to_f - @now.to_f)) : nil
+    ed = (rand(100) > 95) ? time_rand(@now, @max_ed) : nil
 
     [dob.strftime("%b %d, %Y"), sd.strftime("%b %d, %Y"), ed&.strftime("%b %d, %Y")]
+  end
+
+  def time_rand(from = 0.0, to = Time.now)
+    Time.at(from + rand * (to.to_f - from.to_f))
   end
 end

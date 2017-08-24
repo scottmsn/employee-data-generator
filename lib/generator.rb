@@ -1,3 +1,5 @@
+require './lib/demographic_generator'
+
 class Generator
   def initialize(number_of_users:)
     @number_of_users = number_of_users
@@ -13,12 +15,15 @@ class Generator
     require 'faker'
 
     CSV.generate do |csv|
-      csv << ['Name', 'Employee Id', 'Email', 'Date of Birth', 'Start Date', 'End Date', 'Language']
+      store_demographic = DemographicGenerator.new(name: 'Store', option_prefix: 'Store_')
+      region_demographic = DemographicGenerator.new(name: 'Region', max_options: 20, option_prefix: 'Region_')
+
+      csv << ['Name', 'Employee Id', 'Email', 'Date of Birth', 'Start Date', 'End Date', 'Language', store_demographic.name, region_demographic.name]
 
       @number_of_users.to_i.times do |number|
         name = Faker::Name.name
         dob, sd, ed = generate_dates
-        csv << [name, number + 1, email(name), dob, sd, ed, 'en']
+        csv << [name, number + 1, email(name), dob, sd, ed, 'en', store_demographic.pick_demographic, region_demographic.pick_demographic]
       end
     end
   end

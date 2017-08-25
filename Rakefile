@@ -1,6 +1,11 @@
-desc 'Hello world'
-task :hello_world do
-  puts 'hello world'
+begin
+  require 'rspec/core/rake_task'
+
+  RSpec::Core::RakeTask.new(:spec)
+
+  task :default => :spec
+rescue LoadError
+  # no rspec available
 end
 
 namespace :generator do
@@ -28,8 +33,3 @@ namespace :generator do
   end
 end
 
-namespace :haha do
-  task :wow do
-    puts 'wow!!'
-  end
-end

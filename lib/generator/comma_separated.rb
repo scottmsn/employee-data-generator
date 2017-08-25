@@ -18,7 +18,6 @@ module Generator
 
     def to_csv
       require 'csv'
-      require 'faker'
 
       CSV.generate do |csv|
         csv << ['Name', 'Employee Id', 'Email', 'Date of Birth', 'Start Date', 'End Date', 'Language'] + @demographic_generators.map(&:name)

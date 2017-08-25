@@ -1,12 +1,21 @@
-# employee-data-generator
+# Employee Data Generator
 
-## How To
-
-### Setup
+## Setup
 
 - Clone the project
-- Run `bundle install`
+- `bundle install`
 
-### Execute
+## Run tests
 
-- Run `bundle exec rake hello_world`
+- `bundle exec rake`
+
+## Execute
+
+- `bundle exec rake generate:csv`
+
+### Configurations
+
+- Set `USERS` env to define number of users to generate
+- Eg. `USERS=500 bundle exec rake generate:csv`
+- Set `TEMPLATE` env to define demographics template
+- Eg. [sample demographic template](template/source_template.csv)

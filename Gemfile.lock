@@ -64,6 +64,7 @@ PLATFORMS
 DEPENDENCIES
   faker
   guard-rspec
+  pry
   rake
   rspec
 

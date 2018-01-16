@@ -7,11 +7,13 @@ module Generator
     def initialize(
       number_of_users:,
       demographic_template:,
+      email_domain:,
       employee_generator: Generator::Employee.new,
       date_generator: Generator::Date.new
     )
       @number_of_users = number_of_users
       @demographic_generators = demographic_generators(demographic_template)
+      @email_domain = email_domain
       @employee_generator = employee_generator
       @date_generator = date_generator
     end
@@ -23,7 +25,7 @@ module Generator
         csv << ['Name', 'Employee Id', 'Email', 'Date of Birth', 'Start Date', 'End Date', 'Language'] + @demographic_generators.map(&:name)
 
         @number_of_users.to_i.times do |idx|
-          csv << @employee_generator.generate + @date_generator.generate + ['en'] + @demographic_generators.map(&:pick_demographic)
+          csv << @employee_generator.generate(email_domain: @email_domain) + @date_generator.generate + ['en'] + @demographic_generators.map(&:pick_demographic)
         end
       end
     end

@@ -17,12 +17,14 @@ namespace :generator do
 
     number_of_users = ENV['USERS']&.to_i || 5000
     demographic_template = CSV.read(ENV['TEMPLATE'] || './template/source_template.csv')
+    email_domain = ENV['EMAIL_DOMAIN'] || 'example.com'
 
     puts "Generating: #{number_of_users} users"
 
     generator = Generator::CommaSeparated.new(
       number_of_users: number_of_users,
-      demographic_template: demographic_template)
+      demographic_template: demographic_template,
+      email_domain: email_domain)
 
     elapsed = Benchmark.realtime do
       File.open('tmp/new.csv', 'wb') do |file|

@@ -6,7 +6,7 @@ module Generator
       @index = index
     end
 
-    def generate(email_domain: 'example.com')
+    def generate(email_domain:)
       name = Faker::Name.name
       employee_id = @index
       @index = @index + 1

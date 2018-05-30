@@ -1,5 +1,7 @@
 # Employee Data Generator
 
+[![Build Status](https://travis-ci.org/cultureamp/employee-data-generator.svg?branch=master)](https://travis-ci.org/cultureamp/employee-data-generator)
+
 ## Setup
 
 - Clone the project
